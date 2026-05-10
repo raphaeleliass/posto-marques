@@ -49,7 +49,7 @@ export function HeroSection() {
 				>
 					Abasteça.
 					<span className="block text-pm-neon drop-shadow-[0_0_22px_rgb(34_255_90_/_0.22)]">
-						Siga leve.
+						Siga o fluxo.
 					</span>
 				</h1>
 
