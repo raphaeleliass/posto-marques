@@ -42,7 +42,7 @@ export function LocationSection() {
 						</div>
 						<div className="flex gap-4 border-white/12 border-t pt-5">
 							<Clock3 className="mt-1 size-5 text-pm-orange" />
-							<p className="text-white/70">Domingo à domingo | 6h às 22h</p>
+							<p className="text-white/70">Todos os dias | 6h às 22h</p>
 						</div>
 					</div>
 					<Button

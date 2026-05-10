@@ -10,7 +10,7 @@ export const navigation = [
 export const services = [
 	{
 		icon: Gauge,
-		title: "Combustivel premium",
+		title: "Combustível premium",
 		description:
 			"Gasolina, etanol e diesel com controle de qualidade e atendimento sem demora.",
 	},
