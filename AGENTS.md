@@ -1,53 +1,25 @@
-# AGENTS
+# AGENTS.md
 
-## Project Overview
-- Vite + React 19 + TypeScript frontend application.
-- Entry point is `src/main.tsx`, which mounts `App` inside `React.StrictMode`.
-- Current app structure is minimal and centered around a single `App.tsx` component with CSS-driven layout.
-- Static assets live in `src/assets` and `public/`.
+## Commands
+- Use `pnpm`; the committed lockfile is `pnpm-lock.yaml` and there is no npm/yarn lockfile.
+- `pnpm dev` starts the Vite dev server.
+- `pnpm build` runs `tsc -b` first, then `vite build`; use this for full verification.
+- `pnpm lint` runs ESLint over the repo.
+- There is no test runner or test script configured; do not invent `pnpm test` unless one is added.
+- For typecheck-only verification, run `pnpm exec tsc -b`.
 
-## Essential Commands
-Run from repository root.
+## App Structure
+- This is a single-package React 19 + TypeScript + Vite 8 app, not a monorepo.
+- Browser entrypoint is `src/main.tsx`; root component is `src/App.tsx`; Vite mounts through `index.html`.
+- Use `@/*` imports for `src/*`; the alias is configured in both `tsconfig.json` and `components.json`.
 
-```bash
-npm install
-npm run dev
-npm run build
-npm run lint
-npm run preview
-```
+## Styling And UI
+- Tailwind is v4 via `@tailwindcss/vite`; there is no `tailwind.config.*` file. Theme tokens and Tailwind imports live in `src/index.css`.
+- shadcn is configured by `components.json` with `style: "base-luma"`, CSS variables enabled, Lucide icons, and UI components under `src/components/ui`.
+- Existing shadcn-style primitives use Base UI (`@base-ui/react`) plus `class-variance-authority`; keep variant helpers colocated with the component when following this pattern.
+- Use the local `cn` helper from `@/lib/utils` for conditional Tailwind classes.
 
-- `npm run build` performs a TypeScript project build with `tsc -b` before the Vite production build.
-- No automated test framework is configured yet.
-
-## Code Organization
-- `src/main.tsx` bootstraps the React application.
-- `src/App.tsx` contains the main UI component.
-- `src/index.css` and `src/App.css` provide global and component-level styling.
-- `public/` contains static assets served directly by Vite.
-- `vite.config.ts` exists but currently follows the default lightweight setup.
-
-## Style and Conventions
-- TypeScript uses ES modules (`"type": "module"` in `package.json`).
-- Formatting is configured through Biome (`biome.json`):
-  - Tabs for indentation.
-  - Double quotes in JavaScript/TypeScript.
-  - Import organization enabled.
-- ESLint uses flat config via `eslint.config.js`.
-- React hooks linting and Vite React Refresh rules are enabled.
-- Existing React code uses function components and inline event handlers.
-
-## Tooling Notes
-- Biome is configured for formatting and linting, but there is no npm script for it yet.
-- ESLint ignores the `dist/` directory.
-- TypeScript project references are used through `tsconfig.app.json` and `tsconfig.node.json`.
-
-## Architecture Notes
-- Current architecture is intentionally simple: a single render tree rooted at `App`.
-- State management currently relies on local React state (`useState`).
-- Assets are imported directly into components through Vite’s asset pipeline.
-
-## Gotchas
-- Keep formatting aligned with Biome settings; existing files use tabs even though some starter template files may visually appear space-aligned depending on tooling.
-- Since no test framework is installed, validation currently depends on successful lint and production builds.
-- The repository still resembles the default Vite starter template, so avoid documenting conventions that are not yet implemented in code.
+## Tooling Quirks
+- TypeScript enables `erasableSyntaxOnly`, `noUnusedLocals`, and `noUnusedParameters`; avoid TS constructs that require runtime emit such as enums/namespaces.
+- Biome config exists for formatting/organizing imports: tabs, double quotes for JS/TS, and CSS formatting/linting disabled. Package scripts do not currently run Biome.
+- ESLint uses flat config and ignores only `dist`.
