@@ -40,7 +40,7 @@ export function HeroSection() {
 					className="mb-6 inline-flex items-center gap-2 rounded-full border border-pm-neon/25 bg-white/[0.04] px-4 py-2 font-semibold text-pm-neon text-xs uppercase tracking-[0.24em] shadow-lg shadow-pm-neon/10 backdrop-blur"
 				>
 					<span className="size-2 rounded-full bg-pm-neon shadow-lg shadow-pm-neon/70" />
-					Posto premium em movimento
+					Experiência premium
 				</p>
 
 				<h1
